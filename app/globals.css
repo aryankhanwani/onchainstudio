@@ -5,9 +5,7 @@
 
 @font-face {
   font-family: 'Coolvetica';
-  src: url('/fonts/Coolvetica-Regular.woff2') format('woff2'),
-       url('/fonts/Coolvetica-Regular.woff') format('woff'),
-       url('/fonts/Coolvetica-Regular.ttf') format('truetype');
+  src: url('/coolvetica/Coolvetica Rg.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
