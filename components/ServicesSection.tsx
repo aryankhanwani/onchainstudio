@@ -87,28 +87,28 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services-section" className="relative min-h-screen bg-black">
-      <div className="relative min-h-screen w-full overflow-hidden bg-black">
+    <section id="services-section" className="relative bg-black md:min-h-screen">
+      <div className="relative w-full overflow-hidden bg-black md:min-h-screen">
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/20 to-black/50 z-10" />
 
         {/* Content */}
-        <div className="relative z-20 min-h-screen flex flex-col md:flex-row">
+        <div className="relative z-20 flex flex-col md:flex-row md:min-h-screen">
           {/* Left Side - Title and Image (Top Left) */}
-          <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 md:pt-16">
+          <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 pb-6 md:pt-16 md:pb-0">
             {/* Title */}
             <motion.h2
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-[var(--font-geist-sans)] text-3xl sm:text-4xl md:text-5xl font-thin text-white leading-[1.1] tracking-tight mb-6 md:mb-8"
+              className="font-[var(--font-geist-sans)] text-2xl sm:text-3xl md:text-5xl font-medium text-white leading-[1.1] tracking-tight mb-4 md:mb-8"
             >
               WHAT WE DO
             </motion.h2>
 
             {/* Image Container */}
-            <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 via-white/5 to-white/10">
+            <div className="relative w-full md:max-w-xl lg:max-w-2xl aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 via-white/5 to-white/10">
               <AnimatePresence>
                 <motion.img
                   key={currentImage}
@@ -130,7 +130,7 @@ export default function ServicesSection() {
           </div>
 
           {/* Right Side - Services List */}
-          <div className="w-full md:w-2/3 lg:w-3/4 flex flex-col items-start px-4 sm:px-6 lg:px-8 xl:px-12 py-12 md:py-16">
+          <div className="w-full md:w-2/3 lg:w-3/4 flex flex-col items-start px-4 sm:px-6 lg:px-8 xl:px-12 py-6 md:py-16">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -143,17 +143,17 @@ export default function ServicesSection() {
                 className="group cursor-pointer w-full"
                 style={{ willChange: 'transform' }}
               >
-                <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-12 pb-8 md:pb-12 pt-8 md:pt-12 border-b border-white/20 transition-all duration-300 group-hover:border-white/40 items-start">
+                <div className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 pb-5 md:pb-12 pt-5 md:pt-12 border-b border-white/20 transition-all duration-300 group-hover:border-white/40 items-start">
                   {/* Left Column - Service Title */}
                   <div className="w-full md:w-2/5 lg:w-2/5 flex-shrink-0">
-                    <h3 className="font-[var(--font-geist-sans)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
+                    <h3 className="font-[var(--font-geist-sans)] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
                       {service.name}
                     </h3>
                   </div>
                   
                   {/* Right Column - Service Description */}
                   <div className="w-full md:w-3/5 lg:w-3/5">
-                    <p className="font-[var(--font-geist-sans)] text-base sm:text-lg md:text-xl text-white/80 font-light leading-relaxed">
+                    <p className="font-[var(--font-geist-sans)] text-sm sm:text-base md:text-xl text-white/80 font-light leading-relaxed">
                       {service.description}
                     </p>
                   </div>

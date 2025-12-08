@@ -110,24 +110,22 @@ export default function Navbar() {
           </div>
 
           {/* Hamburger Menu Button (Mobile & Tablet) */}
-          <motion.button
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden relative z-[60] flex flex-col items-center justify-center w-11 h-11 rounded-lg hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-300"
+            className="md:hidden relative z-[60] flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             <motion.span
-              className="absolute block w-5 h-[2px] bg-white rounded-full"
+              className="block w-5 h-0.5 bg-white rounded-full"
               animate={{
                 rotate: isMenuOpen ? 45 : 0,
-                y: isMenuOpen ? 0 : -7,
+                y: isMenuOpen ? 0 : -6,
               }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
             <motion.span
-              className="absolute block w-5 h-[2px] bg-white rounded-full"
+              className="block w-5 h-0.5 bg-white rounded-full"
               animate={{
                 opacity: isMenuOpen ? 0 : 1,
                 scale: isMenuOpen ? 0 : 1,
@@ -135,14 +133,14 @@ export default function Navbar() {
               transition={{ duration: 0.2 }}
             />
             <motion.span
-              className="absolute block w-5 h-[2px] bg-white rounded-full"
+              className="block w-5 h-0.5 bg-white rounded-full"
               animate={{
                 rotate: isMenuOpen ? -45 : 0,
-                y: isMenuOpen ? 0 : 7,
+                y: isMenuOpen ? 0 : 6,
               }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
-          </motion.button>
+          </button>
         </div>
       </div>
 
@@ -217,4 +215,3 @@ export default function Navbar() {
     </motion.nav>
   );
 }
-

@@ -30,7 +30,7 @@ export default function WorksSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-[var(--font-geist-sans)] text-3xl sm:text-4xl md:text-5xl font-thin text-white leading-[1.1] tracking-tight mb-6 md:mb-8"
+              className="font-[var(--font-geist-sans)] text-2xl sm:text-3xl md:text-5xl font-medium text-white leading-[1.1] tracking-tight mb-6 md:mb-8"
             >
               WORKS
             </motion.h2>

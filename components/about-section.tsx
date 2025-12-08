@@ -74,7 +74,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for mobile (below 640px) */
         @media (max-width: 639px) {
           .about-title {
-            font-size: 1rem !important;
+            font-size: 1.5rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 1.5rem !important;
@@ -102,7 +103,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for small tablets (640px to 767px) */
         @media (min-width: 640px) and (max-width: 767px) {
           .about-title {
-            font-size: 1.125rem !important;
+            font-size: 1.875rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 1.75rem !important;
@@ -130,7 +132,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for tablets (768px to 1023px) */
         @media (min-width: 768px) and (max-width: 1023px) {
           .about-title {
-            font-size: 1.25rem !important;
+            font-size: 1.875rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 2rem !important;
@@ -158,7 +161,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for small desktops (1024px to 1199px) */
         @media (min-width: 1024px) and (max-width: 1199px) {
           .about-title {
-            font-size: 1.375rem !important;
+            font-size: 3rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 2.25rem !important;
@@ -186,7 +190,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for 1200px to 1499px */
         @media (min-width: 1200px) and (max-width: 1499px) {
           .about-title {
-            font-size: 1.5rem !important;
+            font-size: 3rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 2.5rem !important;
@@ -214,7 +219,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for 1500px to 1699px */
         @media (min-width: 1500px) and (max-width: 1699px) {
           .about-title {
-            font-size: 1.75rem !important;
+            font-size: 3rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 3rem !important;
@@ -242,7 +248,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for 1700px to 1919px */
         @media (min-width: 1700px) and (max-width: 1919px) {
           .about-title {
-            font-size: 2rem !important;
+            font-size: 3rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 3.5rem !important;
@@ -270,7 +277,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for 1920px to 2099px */
         @media (min-width: 1920px) and (max-width: 2099px) {
           .about-title {
-            font-size: 2.125rem !important;
+            font-size: 3rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 4rem !important;
@@ -298,7 +306,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for 2100px to 2399px */
         @media (min-width: 2100px) and (max-width: 2399px) {
           .about-title {
-            font-size: 2.25rem !important;
+            font-size: 3rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 4.5rem !important;
@@ -326,7 +335,8 @@ const AboutSection: React.FC = () => {
         /* Optimized for 2400px and above */
         @media (min-width: 2400px) {
           .about-title {
-            font-size: 2.375rem !important;
+            font-size: 3rem !important;
+            font-weight: 500 !important;
           }
           .about-main-title {
             font-size: 5rem !important;
@@ -359,7 +369,7 @@ const AboutSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
-            className="about-title text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-white font-sans tracking-tight uppercase"
+            className="about-title text-2xl sm:text-3xl md:text-5xl font-medium text-white font-sans tracking-tight uppercase"
           >
             ABOUT
           </motion.h2>
