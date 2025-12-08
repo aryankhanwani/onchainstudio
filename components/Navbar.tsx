@@ -58,14 +58,14 @@ export default function Navbar() {
           {/* Logo */}
           <motion.a
             href="/"
-            className="brand-name text-xl sm:text-2xl md:text-3xl lg:text-4xl font-regular text-white tracking-[0.15em] font-coolvetica uppercase cursor-pointer inline-block"
+            className="brand-name text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white tracking-[0.15em] font-coolvetica uppercase cursor-pointer inline-block"
             whileHover={{ opacity: 0.7 }}
             transition={{ duration: 0.2 }}
           >
             <RandomLetterSwapPingPong 
               label="ONCHAIN STUDIO" 
               reverse={false}
-              className="brand-name font-coolvetica tracking-[0.15em] uppercase text-xl sm:text-2xl md:text-3xl lg:text-4xl"
+              className="brand-name font-coolvetica tracking-[0.15em] uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
             />
           </motion.a>
 

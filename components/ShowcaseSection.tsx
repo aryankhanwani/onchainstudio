@@ -58,7 +58,17 @@ export default function ShowcaseSection() {
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const isMobileView = window.innerWidth < 768;
+      setIsMobile(isMobileView);
+      
+      // On mobile, ensure carousel doesn't auto-scroll by resetting position if needed
+      if (isMobileView) {
+        setIsPaused(true);
+        // Reset to start position on mobile
+        baseX.set(0);
+      } else {
+        setIsPaused(false);
+      }
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -89,7 +99,9 @@ export default function ShowcaseSection() {
 
   // Animation frame for continuous scrolling (desktop only)
   useAnimationFrame((t, delta) => {
-    if (isMobile || isPaused || isDragging || !carouselRef.current) return;
+    // Completely disable auto-scroll on mobile
+    if (isMobile) return;
+    if (isPaused || isDragging || !carouselRef.current) return;
     
     const moveBy = animationSpeed * (delta / 16); // Normalize to 60fps
     const currentX = baseX.get();
@@ -270,8 +282,16 @@ export default function ShowcaseSection() {
               onDragStart={handleDragStart}
               onDrag={handleDrag}
               onDragEnd={handleDragEnd}
-              onMouseEnter={() => !isMobile && !isDragging && setIsPaused(true)}
-              onMouseLeave={() => !isMobile && !isDragging && setIsPaused(false)}
+              onMouseEnter={() => {
+                if (!isMobile && !isDragging) {
+                  setIsPaused(true);
+                }
+              }}
+              onMouseLeave={() => {
+                if (!isMobile && !isDragging) {
+                  setIsPaused(false);
+                }
+              }}
             >
               {duplicatedProjects.map((project, index) => (
                 <motion.div
@@ -290,7 +310,7 @@ export default function ShowcaseSection() {
                         className="w-full h-full"
                         muted
                         loop
-                        preload="auto"
+                        preload="metadata"
                       />
                     </div>
                     <div className="px-1">

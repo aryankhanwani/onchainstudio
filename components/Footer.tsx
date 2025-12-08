@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
             <RandomLetterSwapPingPong
               label="ONCHAIN STUDIO"
               reverse={false}
-              className="brand-name font-coolvetica tracking-[0.15em] uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white"
+              className="brand-name font-coolvetica tracking-[0.15em] uppercase font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white"
             />
           </motion.a>
           <motion.p 
