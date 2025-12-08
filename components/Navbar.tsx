@@ -112,31 +112,33 @@ export default function Navbar() {
           {/* Hamburger Menu Button (Mobile & Tablet) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1.5 z-50 relative"
-            aria-label="Toggle menu"
+            className="md:hidden relative z-[60] flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
           >
             <motion.span
-              className="block w-6 h-px bg-white transition-all"
+              className="block w-5 h-0.5 bg-white rounded-full"
               animate={{
                 rotate: isMenuOpen ? 45 : 0,
-                y: isMenuOpen ? 8 : 0,
+                y: isMenuOpen ? 0 : -6,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
             <motion.span
-              className="block w-6 h-px bg-white transition-all"
+              className="block w-5 h-0.5 bg-white rounded-full"
               animate={{
                 opacity: isMenuOpen ? 0 : 1,
+                scale: isMenuOpen ? 0 : 1,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             />
             <motion.span
-              className="block w-6 h-px bg-white transition-all"
+              className="block w-5 h-0.5 bg-white rounded-full"
               animate={{
                 rotate: isMenuOpen ? -45 : 0,
-                y: isMenuOpen ? -8 : 0,
+                y: isMenuOpen ? 0 : 6,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
           </button>
         </div>
@@ -152,7 +154,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-40 md:hidden"
+              className="fixed inset-0 bg-black/90 backdrop-blur-md z-[55] md:hidden"
               onClick={() => setIsMenuOpen(false)}
             />
             
@@ -162,10 +164,12 @@ export default function Navbar() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-0 z-50 flex items-center justify-center md:hidden"
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 z-[55] flex items-center justify-center md:hidden pointer-events-none"
             >
-              <div className="flex flex-col items-center justify-center gap-8 px-6">
+              <div 
+                className="flex flex-col items-center justify-center gap-8 px-6 pointer-events-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
                 {/* Navigation Links */}
                 {navItems.map((item, index) => (
                   <motion.a
