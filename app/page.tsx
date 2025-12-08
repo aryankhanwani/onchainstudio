@@ -14,6 +14,7 @@ import Timeline from '@/components/Timeline';
 import { Footer } from '@/components/Footer';
 import SplashCursor from '@/components/ui/SplashCursor';
 import SmoothScroll from '@/components/SmoothScroll';
+import VideoPreloader from '@/components/VideoPreloader';
 
 export default function Home() {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -21,6 +22,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
+      <VideoPreloader />
       <main className="relative overflow-hidden">
         <AnimatePresence>
           {showPreloader && (

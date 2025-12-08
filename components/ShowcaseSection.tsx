@@ -290,7 +290,7 @@ export default function ShowcaseSection() {
                         className="w-full h-full"
                         muted
                         loop
-                        preload="metadata"
+                        preload="auto"
                       />
                     </div>
                     <div className="px-1">

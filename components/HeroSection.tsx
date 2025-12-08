@@ -59,6 +59,7 @@ export default function HeroSection() {
               loop
               muted
               playsInline
+              preload="auto"
               className="w-full h-auto object-cover"
             >
               <source src="/IMG_0330-1.mp4" type="video/mp4" />
@@ -110,6 +111,7 @@ export default function HeroSection() {
               loop
               muted
               playsInline
+              preload="auto"
               className="w-full h-full object-cover"
             >
               <source src="/IMG_0330-1.mp4" type="video/mp4" />
