@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import LiquidEther from './LiquidEther';
 
 export default function HeroSection() {
 
@@ -10,29 +9,7 @@ export default function HeroSection() {
       id="hero-section"
       className="relative min-h-screen "
     >
-      <div className="relative min-h-screen w-full overflow-hidden">
-        {/* LiquidEther Background */}
-        <div className="absolute inset-0 w-full bg-black h-full z-0">
-          <LiquidEther
-            colors={['#ffffff', '#ffffff', '#ffffff']}
-            mouseForce={20}
-            cursorSize={100}
-            isViscous={false}
-            viscous={30}
-            iterationsViscous={32}
-            iterationsPoisson={32}
-            resolution={0.5}
-            isBounce={false}
-            autoDemo={true}
-            autoSpeed={0.5}
-            autoIntensity={2.2}
-            takeoverDuration={0.25}
-            autoResumeDelay={3000}
-            autoRampDuration={0.6}
-            style={{ width: '100%', height: '100%', position: 'absolute' }}
-          />
-        </div>
-        
+      <div className="relative min-h-screen w-full overflow-hidden bg-black">
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/20 to-black/50 z-10" />
         
@@ -45,7 +22,7 @@ export default function HeroSection() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="mb-4"
           >
-            <h1 className="font-[var(--font-geist-sans)] text-4xl sm:text-5xl font-thin text-white leading-[1.1] tracking-tight flex flex-col items-start">
+            <h1 className="font-[var(--font-geist-sans)] text-4xl sm:text-5xl font-bold text-white leading-[1.1] tracking-tight flex flex-col items-start">
               <span className="block uppercase">
                 BRINGING
               </span>

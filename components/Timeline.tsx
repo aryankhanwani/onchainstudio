@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLenis } from './SmoothScroll';
 
 interface TimelineItem {
   id: string;
@@ -19,6 +20,7 @@ const timelineItems: TimelineItem[] = [
 export default function Timeline() {
   const [activeSection, setActiveSection] = useState<string>('services-section');
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,11 +115,19 @@ export default function Timeline() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (lenis) {
+      lenis.on('scroll', handleScroll);
+      handleScroll(); // Initial check
+      return () => {
+        lenis.off('scroll', handleScroll);
+      };
+    } else {
+      // Fallback to window scroll if Lenis is not available
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial check
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [lenis]);
 
   const handleClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -125,14 +135,15 @@ export default function Timeline() {
       // Immediately set active section for instant feedback
       setActiveSection(sectionId);
       
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      // Update after scroll animation completes (smooth scroll typically takes ~500ms)
-      setTimeout(() => {
-        // Re-run scroll handler to ensure proper detection
-        const scrollEvent = new Event('scroll');
-        window.dispatchEvent(scrollEvent);
-      }, 800);
+      if (lenis) {
+        lenis.scrollTo(element, {
+          offset: 0,
+          duration: 1.5,
+        });
+      } else {
+        // Fallback to native smooth scroll
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 

@@ -3,7 +3,6 @@
 import * as React from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import Image from "next/image"
-import LiquidEther from "./LiquidEther"
 
 const AboutSection: React.FC = () => {
   const [isVisible, setIsVisible] = React.useState(false)
@@ -66,30 +65,8 @@ const AboutSection: React.FC = () => {
   return (
     <div 
       ref={sectionRef} 
-      className="w-full pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 pb-20 sm:pb-24 md:pb-28 lg:pb-32 xl:pb-36 overflow-x-hidden relative section-container min-h-screen"
+      className="w-full pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 pb-20 sm:pb-24 md:pb-28 lg:pb-32 xl:pb-36 overflow-x-hidden relative section-container min-h-screen bg-black"
     >
-      {/* LiquidEther Background */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <LiquidEther
-          colors={['#ffffff', '#ffffff', '#ffffff']}
-          mouseForce={20}
-          cursorSize={100}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-          style={{ width: '100%', height: '100%', position: 'absolute' }}
-        />
-      </div>
-
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/20 to-black/50 z-10" />
       

@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import LiquidEther from './LiquidEther';
 
 interface Service {
   id: number;
@@ -89,29 +88,7 @@ export default function ServicesSection() {
 
   return (
     <section id="services-section" className="relative min-h-screen bg-black">
-      <div className="relative min-h-screen w-full overflow-hidden">
-        {/* LiquidEther Background */}
-        <div className="absolute inset-0 w-full h-full z-0" style={{ willChange: 'transform' }}>
-          <LiquidEther
-            colors={['#ffffff', '#ffffff', '#ffffff']}
-            mouseForce={hoveredService ? 10 : 20}
-            cursorSize={hoveredService ? 80 : 100}
-            isViscous={false}
-            viscous={30}
-            iterationsViscous={hoveredService ? 24 : 32}
-            iterationsPoisson={hoveredService ? 24 : 32}
-            resolution={hoveredService ? 0.4 : 0.5}
-            isBounce={false}
-            autoDemo={true}
-            autoSpeed={hoveredService ? 0.3 : 0.5}
-            autoIntensity={hoveredService ? 1.5 : 2.2}
-            takeoverDuration={0.25}
-            autoResumeDelay={3000}
-            autoRampDuration={0.6}
-            style={{ width: '100%', height: '100%', position: 'absolute' }}
-          />
-        </div>
-
+      <div className="relative min-h-screen w-full overflow-hidden bg-black">
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/20 to-black/50 z-10" />
 
