@@ -50,14 +50,14 @@ export default function Navbar() {
           {/* Logo */}
           <motion.a
             href="/"
-            className="brand-name text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-[0.15em] font-coolvetica uppercase cursor-pointer inline-block"
+            className="brand-name text-xl sm:text-2xl md:text-3xl lg:text-4xl font-regular text-white tracking-[0.15em] font-coolvetica uppercase cursor-pointer inline-block"
             whileHover={{ opacity: 0.7 }}
             transition={{ duration: 0.2 }}
           >
             <RandomLetterSwapPingPong 
               label="ONCHAIN STUDIO" 
               reverse={false}
-              className="brand-name font-coolvetica tracking-[0.05em] uppercase text-xl sm:text-2xl md:text-3xl lg:text-4xl"
+              className="brand-name font-coolvetica tracking-[0.15em] uppercase text-xl sm:text-2xl md:text-3xl lg:text-4xl"
             />
           </motion.a>
 
@@ -78,7 +78,10 @@ export default function Navbar() {
             ))}
             
             {/* Shimmer CTA Button */}
-            <motion.div
+            <motion.a
+              href="https://calendly.com/rohaan-web3-marketer/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
@@ -95,7 +98,7 @@ export default function Navbar() {
                   <RandomLetterSwapForward ref={letterSwapRef} label="Let's Talk" reverse={false} />
                 </span>
               </ShimmerButton>
-            </motion.div>
+            </motion.a>
           </div>
         </div>
       </div>

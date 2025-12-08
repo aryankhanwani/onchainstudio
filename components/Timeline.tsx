@@ -12,7 +12,8 @@ interface TimelineItem {
 const timelineItems: TimelineItem[] = [
   { id: '1', title: 'WHAT WE DO', sectionId: 'services-section' },
   { id: '2', title: 'WORKS', sectionId: 'works-section' },
-  { id: '3', title: 'ABOUT', sectionId: 'about-section' },
+  { id: '3', title: 'SHOWCASE', sectionId: 'showcase-section' },
+  { id: '4', title: 'ABOUT', sectionId: 'about-section' },
 ];
 
 export default function Timeline() {
@@ -146,9 +147,9 @@ export default function Timeline() {
       <div className="absolute inset-0 -left-4 -right-4 -top-4 -bottom-4 bg-black/20 backdrop-blur-md rounded-2xl border border-white/10" />
       
       <div className="relative flex flex-col items-start gap-12 px-6 py-8">
-        {/* Timeline Line - connects all three dots */}
+        {/* Timeline Line - connects all dots */}
         {/* Positioned to connect center of first dot to center of last dot */}
-        <div className="absolute left-[40px] top-[44px] h-[136px] w-0.5 bg-white/20" />
+        <div className="absolute left-[40px] top-[44px] h-[204px] w-0.5 bg-white/20" />
         
         {timelineItems.map((item, index) => {
           const isActive = activeSection === item.sectionId;

@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import WorksSection from '@/components/WorksSection';
+import ShowcaseSection from '@/components/ShowcaseSection';
 import { AboutSection } from '@/components/about-section';
 import { BookCallSection } from '@/components/book-call-section';
 import Preloader from '@/components/Preloader';
@@ -49,6 +50,7 @@ export default function Home() {
               <HeroSection />
               <ServicesSection />
               <WorksSection />
+              <ShowcaseSection />
               <section id="about-section" className="relative bg-black">
                 <AboutSection />
               </section>

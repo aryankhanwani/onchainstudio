@@ -88,7 +88,7 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services-section" className="relative min-h-screen bg-black pt-16 md:pt-24 lg:pt-32">
+    <section id="services-section" className="relative min-h-screen bg-black">
       <div className="relative min-h-screen w-full overflow-hidden">
         {/* LiquidEther Background */}
         <div className="absolute inset-0 w-full h-full z-0" style={{ willChange: 'transform' }}>

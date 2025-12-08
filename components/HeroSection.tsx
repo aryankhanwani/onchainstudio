@@ -8,11 +8,11 @@ export default function HeroSection() {
   return (
     <section 
       id="hero-section"
-      className="relative min-h-screen bg-black"
+      className="relative min-h-screen "
     >
       <div className="relative min-h-screen w-full overflow-hidden">
         {/* LiquidEther Background */}
-        <div className="absolute inset-0 w-full h-full z-0">
+        <div className="absolute inset-0 w-full bg-black h-full z-0">
           <LiquidEther
             colors={['#ffffff', '#ffffff', '#ffffff']}
             mouseForce={20}
@@ -37,13 +37,13 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/20 to-black/50 z-10" />
         
         {/* Mobile Layout - Flex Column */}
-        <div className="relative z-20 min-h-screen flex flex-col justify-center px-4 py-8 md:hidden">
+        <div className="relative z-20 min-h-screen flex flex-col justify-center px-4 py-4 md:hidden">
           {/* Hero Text - First */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-6"
+            className="mb-4"
           >
             <h1 className="font-[var(--font-geist-sans)] text-4xl sm:text-5xl font-thin text-white leading-[1.1] tracking-tight flex flex-col items-start">
               <span className="block uppercase">
@@ -63,7 +63,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-8"
+            className="mb-6"
           >
             <p className="font-[var(--font-geist-sans)] text-sm text-white/80 font-light leading-relaxed text-left">
               We transform founders, products, and ideas into beautiful, cinematic stories that inspire trust, elevate brand presence, and make complex concepts unmistakably clear
@@ -75,7 +75,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full max-w-xs mx-auto overflow-hidden rounded-2xl"
+            className="w-full overflow-hidden rounded-2xl"
           >
             <video
               autoPlay

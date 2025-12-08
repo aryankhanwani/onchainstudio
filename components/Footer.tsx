@@ -5,18 +5,6 @@ import { motion } from "framer-motion"
 import { RandomLetterSwapPingPong } from "./RandomLetterSwap"
 
 const Footer: React.FC = () => {
-  const handleScrollToStart = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!process.env.NEXT_PUBLIC_CALENDLY_URL) {
-      e.preventDefault()
-      const targetElement = document.querySelector('#start-project') as HTMLElement
-      if (targetElement) {
-        targetElement.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        })
-      }
-    }
-  }
 
   return (
     <footer className="relative w-full z-10 py-16 md:py-20 lg:py-24 px-5 sm:px-6 md:px-8 lg:px-16 xl:px-24">
@@ -120,7 +108,7 @@ const Footer: React.FC = () => {
                   <span>hello@onchainstudio.com</span>
                 </motion.a>
                 <motion.a 
-                  href="https://x.com/onchainstudio"
+                  href="https://x.com/0xonchainstudio"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300 text-sm md:text-base font-light font-sans relative"
@@ -149,7 +137,7 @@ const Footer: React.FC = () => {
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
                   </motion.div>
-                  <span>@onchainstudio</span>
+                  <span>@0xonchainstudio</span>
                 </motion.a>
               </div>
               <div className="flex items-center gap-3 md:gap-4 pt-2">
@@ -179,7 +167,7 @@ const Footer: React.FC = () => {
                   </svg>
                 </motion.a>
                 <motion.a
-                  href="https://x.com/onchainstudio"
+                  href="https://x.com/0xonchainstudio"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 relative"
@@ -247,10 +235,9 @@ const Footer: React.FC = () => {
                   Ready to bring your vision to life? Let's discuss your next project.
                 </p>
                 <motion.a
-                  href={process.env.NEXT_PUBLIC_CALENDLY_URL || "#start-project"}
-                  target={process.env.NEXT_PUBLIC_CALENDLY_URL ? "_blank" : undefined}
-                  rel={process.env.NEXT_PUBLIC_CALENDLY_URL ? "noopener noreferrer" : undefined}
-                  onClick={handleScrollToStart}
+                  href="https://calendly.com/rohaan-web3-marketer/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ 
                     scale: 1.05,
                     y: -4,

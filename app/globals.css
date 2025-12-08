@@ -61,6 +61,17 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
 /* Shimmer Button Animations */
 @keyframes shimmer-btn-shimmer-slide {
   to {

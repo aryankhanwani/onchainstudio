@@ -10,9 +10,9 @@ interface StatCard {
 }
 
 const stats: StatCard[] = [
-  { id: 1, value: '150+', label: 'Projects' },
-  { id: 2, value: '50+', label: 'Clients' },
-  { id: 3, value: '98%', label: 'Satisfaction' },
+  { id: 1, value: '500+', label: 'Videos' },
+  { id: 2, value: '12M+', label: 'Impressions' },
+  { id: 3, value: '99%', label: 'Satisfaction' },
 ];
 
 export default function WorksSection() {
@@ -99,8 +99,8 @@ export default function WorksSection() {
                     transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
                     className="w-full aspect-square bg-black rounded-2xl p-6 flex flex-col justify-center items-center border border-white/10 hover:border-white/30 transition-all duration-300"
                   >
-                    <div className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</div>
-                    <div className="text-sm md:text-base text-white/60 font-light text-center">{stat.label}</div>
+                    <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-2">{stat.value}</div>
+                    <div className="text-sm md:text-base lg:text-lg xl:text-xl text-white/60 font-light text-center">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>

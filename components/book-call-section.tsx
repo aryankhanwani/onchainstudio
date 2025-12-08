@@ -105,9 +105,9 @@ const BookCallSection: React.FC = () => {
           </motion.p>
 
           <motion.a
-            href={process.env.NEXT_PUBLIC_CALENDLY_URL || "#contact"}
-            target={process.env.NEXT_PUBLIC_CALENDLY_URL ? "_blank" : undefined}
-            rel={process.env.NEXT_PUBLIC_CALENDLY_URL ? "noopener noreferrer" : undefined}
+            href="https://calendly.com/rohaan-web3-marketer/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
