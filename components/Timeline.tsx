@@ -160,7 +160,7 @@ export default function Timeline() {
       <div className="relative flex flex-col items-start gap-12 px-6 py-8">
         {/* Timeline Line - connects all dots */}
         {/* Positioned to connect center of first dot to center of last dot */}
-        <div className="absolute left-[40px] top-[44px] h-[204px] w-0.5 bg-white/20" />
+        <div className="absolute left-[39px] top-[50px] h-[204px] w-0.5 bg-white/20" />
         
         {timelineItems.map((item, index) => {
           const isActive = activeSection === item.sectionId;
@@ -180,7 +180,7 @@ export default function Timeline() {
                   className={`w-4 h-4 rounded-full border-2 transition-all duration-300 ${
                     isActive
                       ? 'bg-white border-white scale-125'
-                      : 'bg-transparent border-white/30 group-hover:border-white/60'
+                      : 'bg-black border-white/30 group-hover:border-white/60'
                   }`}
                   animate={{
                     scale: isActive ? 1.25 : 1,
