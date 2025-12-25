@@ -63,6 +63,8 @@ export default function HeroSection() {
               muted
               playsInline
               className="w-full h-auto object-cover"
+              preload="metadata"
+
             />
           </motion.div>
         </div>
@@ -114,6 +116,7 @@ export default function HeroSection() {
               muted
               playsInline
               className="w-full h-full object-cover"
+              preload="metadata"
             />
           </div>
         </div>
