@@ -57,6 +57,7 @@ export default function HeroSection() {
           >
             <HLSVideoPlayer
               src="/IMG_0330-1.m3u8"
+              poster="/token-2049.png"
               autoPlay
               loop
               muted
@@ -107,6 +108,7 @@ export default function HeroSection() {
           <div className="absolute bottom-8 right-8 z-30 w-64 h-40 sm:w-80 sm:h-48 md:w-96 md:h-56 lg:w-[28rem] lg:h-[18rem] xl:w-[32rem] xl:h-[20rem] 2xl:w-[40rem] 2xl:h-[25rem] overflow-hidden rounded-2xl">
             <HLSVideoPlayer
               src="/IMG_0330-1.m3u8"
+              poster="/token-2049.png"
               autoPlay
               loop
               muted
