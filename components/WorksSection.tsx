@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import HLSVideoPlayer from './HLSVideoPlayer';
 
 interface StatCard {
   id: number;
@@ -93,8 +94,8 @@ export default function WorksSection() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="col-span-2 row-span-1 aspect-[2/1] rounded-2xl overflow-hidden relative group cursor-pointer border border-white/10 hover:border-white/30 transition-all duration-300"
                 >
-                  <video
-                    src="/1080horizontal.mp4"
+                  <HLSVideoPlayer
+                    src="/1080horizontal.m3u8"
                     autoPlay
                     loop
                     muted
@@ -111,8 +112,8 @@ export default function WorksSection() {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="col-span-1 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer border border-white/10 hover:border-white/30 transition-all duration-300"
                 >
-                  <video
-                    src="/yellow-allinone-ecosystem-v3-portrait.mp4"
+                  <HLSVideoPlayer
+                    src="/yellow-allinone-ecosystem-v3-portrait.m3u8"
                     autoPlay
                     loop
                     muted
@@ -130,8 +131,8 @@ export default function WorksSection() {
                   transition={{ duration: 0.6, delay: 0.6 }}
                   className="col-span-1 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer border border-white/10 hover:border-white/30 transition-all duration-300"
                 >
-                  <video
-                    src="/IMG_0330-1.mp4"
+                  <HLSVideoPlayer
+                    src="/IMG_0330-1.m3u8"
                     autoPlay
                     loop
                     muted

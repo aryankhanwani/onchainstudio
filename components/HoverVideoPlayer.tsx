@@ -37,6 +37,7 @@ import { Maximize, Minimize, Pause, Play, Volume2, VolumeX } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
+import HLSVideoPlayer, { HLSVideoPlayerRef } from "./HLSVideoPlayer"
 
 // Types
 interface VideoPlayerState {
@@ -672,6 +673,7 @@ const HoverVideoPlayerVideo: React.FC<{
   const isVimeoVideo = isVimeoUrl(src)
   const containerRef = useRef<HTMLDivElement>(null)
   const playerRef = useRef<VimeoPlayer | null>(null)
+  const hlsPlayerRef = useRef<HLSVideoPlayerRef>(null)
 
   useEffect(() => {
     if (!isVimeoVideo || !containerRef.current) return
@@ -745,13 +747,26 @@ const HoverVideoPlayerVideo: React.FC<{
     }
   }, [isVimeoVideo, src, muted, loop, isHovering])
 
+  // Sync HLS player ref with videoRef
+  useEffect(() => {
+    const syncRef = () => {
+      if (hlsPlayerRef.current?.video && videoRef) {
+        // @ts-ignore
+        videoRef.current = hlsPlayerRef.current.video
+      }
+    }
+    syncRef()
+    const timer = setTimeout(syncRef, 100)
+    return () => clearTimeout(timer)
+  }, [videoRef, src])
+
   if (isVimeoVideo) {
     return <div ref={containerRef} className="absolute inset-0" />
   }
 
   return (
-    <video
-      ref={videoRef}
+    <HLSVideoPlayer
+      ref={hlsPlayerRef}
       src={src}
       className={cn("absolute inset-0 w-full h-full object-cover")}
       style={{
@@ -766,6 +781,12 @@ const HoverVideoPlayerVideo: React.FC<{
       crossOrigin="anonymous"
       aria-label="Video player"
       role="application"
+      onLoadedData={() => {
+        if (hlsPlayerRef.current?.video && videoRef) {
+          // @ts-ignore
+          videoRef.current = hlsPlayerRef.current.video
+        }
+      }}
     />
   )
 }

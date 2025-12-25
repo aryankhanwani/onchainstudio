@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import HLSVideoPlayer from './HLSVideoPlayer';
 
 export default function HeroSection() {
 
@@ -54,15 +55,14 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="w-full overflow-hidden rounded-2xl"
           >
-            <video
+            <HLSVideoPlayer
+              src="/IMG_0330-1.m3u8"
               autoPlay
               loop
               muted
               playsInline
               className="w-full h-auto object-cover"
-            >
-              <source src="/IMG_0330-1.mp4" type="video/mp4" />
-            </video>
+            />
           </motion.div>
         </div>
 
@@ -105,15 +105,14 @@ export default function HeroSection() {
 
           {/* Video Container - Bottom Right - Responsive Sizes */}
           <div className="absolute bottom-8 right-8 z-30 w-64 h-40 sm:w-80 sm:h-48 md:w-96 md:h-56 lg:w-[28rem] lg:h-[18rem] xl:w-[32rem] xl:h-[20rem] 2xl:w-[40rem] 2xl:h-[25rem] overflow-hidden rounded-2xl">
-            <video
+            <HLSVideoPlayer
+              src="/IMG_0330-1.m3u8"
               autoPlay
               loop
               muted
               playsInline
               className="w-full h-full object-cover"
-            >
-              <source src="/IMG_0330-1.mp4" type="video/mp4" />
-            </video>
+            />
           </div>
         </div>
         
