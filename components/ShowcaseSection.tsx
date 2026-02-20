@@ -16,28 +16,28 @@ interface ShowcaseProject {
 const showcaseProjects: ShowcaseProject[] = [
   {
     id: 1,
-    title: 'Project One',
+    title: 'Motion Graphics',
     videoSrc: '/1080horizontal.m3u8',
     thumbnailSrc: '',
     description: 'A stunning showcase of creative excellence',
   },
   {
     id: 2,
-    title: 'Project Two',
+    title: 'All-in-one ecosystem',
     videoSrc: '/yellow-allinone-ecosystem-v3-portrait.m3u8',
     thumbnailSrc: '',
     description: 'Innovative design meets cutting-edge technology',
   },
   {
     id: 3,
-    title: 'Project Three',
+    title: 'Token 2049',
     videoSrc: '/IMG_0330-1.m3u8',
     thumbnailSrc: '',
     description: 'Pushing boundaries in digital storytelling',
   },
   {
     id: 4,
-    title: 'Project Four',
+    title: '1Inch x Yellow Media',
     videoSrc: '/1Inch-x-Yellow-Media.m3u8',
     thumbnailSrc: '',
     description: 'Where creativity and strategy converge',
