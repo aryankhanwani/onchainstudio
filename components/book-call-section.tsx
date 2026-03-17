@@ -3,95 +3,113 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 
+function GridBeamBackground() {
+  const cols = 20;
+  const rows = 12;
+  const cellSize = 60;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Base: dark navy / deep indigo instead of pure black */}
+      <div className="absolute inset-0 bg-[#06081a]" />
+
+      {/* Grid */}
+      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="cta-beam-grid" width={cellSize} height={cellSize} patternUnits="userSpaceOnUse">
+            <path d={`M ${cellSize} 0 L 0 0 0 ${cellSize}`} fill="none" stroke="rgba(139,92,246,0.07)" strokeWidth="0.5" />
+          </pattern>
+          <radialGradient id="cta-glow-center" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(139,92,246,0.12)" />
+            <stop offset="60%" stopColor="rgba(139,92,246,0.03)" />
+            <stop offset="100%" stopColor="transparent" />
+          </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#cta-beam-grid)" />
+        <rect width="100%" height="100%" fill="url(#cta-glow-center)" />
+      </svg>
+
+      {/* Animated horizontal beams */}
+      {[0.2, 0.45, 0.7].map((pos, i) => (
+        <motion.div
+          key={`h-${i}`}
+          className="absolute left-0 h-px"
+          style={{
+            top: `${pos * 100}%`,
+            background: 'linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.4) 30%, rgba(16,185,129,0.3) 70%, transparent 100%)',
+            width: '40%',
+          }}
+          animate={{ x: ['-40%', '140%'] }}
+          transition={{ duration: 5 + i * 1.5, repeat: Infinity, ease: 'linear', delay: i * 2 }}
+        />
+      ))}
+
+      {/* Animated vertical beams */}
+      {[0.3, 0.6, 0.85].map((pos, i) => (
+        <motion.div
+          key={`v-${i}`}
+          className="absolute top-0 w-px"
+          style={{
+            left: `${pos * 100}%`,
+            background: 'linear-gradient(180deg, transparent 0%, rgba(139,92,246,0.3) 30%, rgba(249,115,22,0.2) 70%, transparent 100%)',
+            height: '35%',
+          }}
+          animate={{ y: ['-35%', '135%'] }}
+          transition={{ duration: 6 + i * 1.2, repeat: Infinity, ease: 'linear', delay: 1 + i * 1.8 }}
+        />
+      ))}
+
+      {/* Glowing intersection nodes */}
+      {[
+        { x: '25%', y: '30%' }, { x: '50%', y: '50%' }, { x: '75%', y: '35%' },
+        { x: '35%', y: '70%' }, { x: '65%', y: '65%' },
+      ].map((pos, i) => (
+        <motion.div
+          key={`node-${i}`}
+          className="absolute w-1.5 h-1.5 rounded-full"
+          style={{ left: pos.x, top: pos.y, background: 'rgb(139,92,246)' }}
+          animate={{
+            opacity: [0.1, 0.7, 0.1],
+            scale: [1, 1.5, 1],
+            boxShadow: ['0 0 4px rgba(139,92,246,0.2)', '0 0 16px rgba(139,92,246,0.5)', '0 0 4px rgba(139,92,246,0.2)'],
+          }}
+          transition={{ duration: 3, delay: i * 0.8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      ))}
+
+      {/* Vignette — softer so grid stays visible */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(6,8,26,0.6)_100%)]" />
+    </div>
+  );
+}
+
 const BookCallSection: React.FC = () => {
   return (
-    <section
-      className="relative w-full min-h-[70vh] bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden section-container"
-    >
-      <style dangerouslySetInnerHTML={{__html: `
-        @media (min-width: 1500px) and (max-width: 1699px) {
-          .book-call-title {
-            font-size: 3.5rem !important;
-            line-height: 1.1 !important;
-          }
-          .book-call-subtitle {
-            font-size: 1.125rem !important;
-            line-height: 1.6 !important;
-          }
-          .book-call-button {
-            font-size: 0.875rem !important;
-            padding: 0.875rem 2rem !important;
-          }
-        }
-        @media (min-width: 1700px) and (max-width: 1919px) {
-          .book-call-title {
-            font-size: 4rem !important;
-            line-height: 1.1 !important;
-          }
-          .book-call-subtitle {
-            font-size: 1.25rem !important;
-            line-height: 1.6 !important;
-          }
-          .book-call-button {
-            font-size: 0.9375rem !important;
-            padding: 1rem 2.25rem !important;
-          }
-        }
-        @media (min-width: 1920px) and (max-width: 2099px) {
-          .book-call-title {
-            font-size: 4.5rem !important;
-            line-height: 1.1 !important;
-          }
-          .book-call-subtitle {
-            font-size: 1.375rem !important;
-            line-height: 1.6 !important;
-          }
-          .book-call-button {
-            font-size: 1rem !important;
-            padding: 1.125rem 2.5rem !important;
-          }
-        }
-        @media (min-width: 2100px) and (max-width: 2399px) {
-          .book-call-title {
-            font-size: 5rem !important;
-            line-height: 1.1 !important;
-          }
-          .book-call-subtitle {
-            font-size: 1.5rem !important;
-            line-height: 1.6 !important;
-          }
-          .book-call-button {
-            font-size: 1.0625rem !important;
-            padding: 1.25rem 2.75rem !important;
-          }
-        }
-        @media (min-width: 2400px) {
-          .book-call-title {
-            font-size: 5.5rem !important;
-            line-height: 1.1 !important;
-          }
-          .book-call-subtitle {
-            font-size: 1.625rem !important;
-            line-height: 1.6 !important;
-          }
-          .book-call-button {
-            font-size: 1.125rem !important;
-            padding: 1.375rem 3rem !important;
-          }
-        }
-      `}} />
+    <section className="relative w-full min-h-[70vh] overflow-hidden">
+      <GridBeamBackground />
+
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[70vh] px-5 sm:px-6 md:px-8 lg:px-16 xl:px-24 py-16 sm:py-20 md:py-24">
         <div className="max-w-4xl mx-auto text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-violet-400/60 text-xs sm:text-sm uppercase tracking-[0.3em] font-light mb-6 sm:mb-8"
+          >
+            Let&apos;s work together
+          </motion.p>
+
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-            className="book-call-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-white mb-6 sm:mb-8 md:mb-10 font-sans leading-tight tracking-tight text-center"
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-5 sm:mb-7 font-sans leading-tight tracking-tight"
           >
-            GET YOUR
+            Looking for a Web3
             <br />
-            <span className="text-white/90 whitespace-nowrap">PROJECT ONCHAIN</span>
+            Marketing Team?
           </motion.h2>
 
           <motion.p
@@ -99,9 +117,9 @@ const BookCallSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="book-call-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 font-light mb-10 sm:mb-12 md:mb-16 font-sans max-w-2xl mx-auto text-center"
+            className="text-base sm:text-lg md:text-xl text-white/45 font-light mb-10 sm:mb-12 font-sans max-w-2xl mx-auto"
           >
-            Let's build something extraordinary together. Book a call to discuss your next web3 project.
+            Work with a team that has been building and scaling projects in Web3 for over 6 years.
           </motion.p>
 
           <motion.a
@@ -114,25 +132,16 @@ const BookCallSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 bg-white text-black rounded-full font-bold text-base sm:text-lg uppercase tracking-wider font-sans hover:bg-white/90 transition-colors duration-300"
+            className="group inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 bg-white text-black rounded-full font-bold text-base sm:text-lg uppercase tracking-wider font-sans transition-all duration-300 hover:shadow-[0_0_50px_rgba(139,92,246,0.25)]"
           >
-            <span>BOOK A CALL</span>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-black"
+            <span>Book a Strategy Call</span>
+            <motion.svg
+              width="20" height="20" viewBox="0 0 20 20" fill="none"
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <path
-                d="M5 15L15 5M15 5H5M15 5V15"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+              <path d="M5 15L15 5M15 5H5M15 5V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </motion.svg>
           </motion.a>
         </div>
       </div>
@@ -140,5 +149,4 @@ const BookCallSection: React.FC = () => {
   )
 }
 
-export { BookCallSection }
-
+export { BookCallSection, GridBeamBackground }

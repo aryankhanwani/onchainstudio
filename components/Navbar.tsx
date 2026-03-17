@@ -6,7 +6,11 @@ import ShimmerButton from './ShimmerButton';
 import { RandomLetterSwapForward, RandomLetterSwapRef, RandomLetterSwapPingPong } from './RandomLetterSwap';
 import { useLenis } from './SmoothScroll';
 
-export default function Navbar() {
+interface NavbarProps {
+  alwaysVisible?: boolean;
+}
+
+export default function Navbar({ alwaysVisible = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,29 +18,30 @@ export default function Navbar() {
   const lenis = useLenis();
 
   useEffect(() => {
+    if (alwaysVisible) {
+      setIsVisible(true);
+      setScrolled(true);
+      return;
+    }
+
     if (!lenis) return;
 
     const handleScroll = ({ scroll, limit }: { scroll: number; limit: number }) => {
-      // Hide navbar after scrolling starts (after one scroll)
       setIsVisible(scroll === 0);
-      
-      // Change background when scrolled a bit
       setScrolled(scroll > 20);
     };
     
     lenis.on('scroll', handleScroll);
-    
-    // Initial check
     handleScroll({ scroll: lenis.scroll, limit: lenis.limit });
     
     return () => {
       lenis.off('scroll', handleScroll);
     };
-  }, [lenis]);
+  }, [lenis, alwaysVisible]);
 
   const navItems = [
     { label: 'Work', href: '#works-section' },
-    { label: 'About', href: '#about-section' },
+    { label: 'Services', href: '/services' },
   ];
 
   return (
@@ -93,6 +98,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
+              className="flex-shrink-0"
             >
               <ShimmerButton
                 shimmerColor="#00D9FF"
@@ -102,7 +108,7 @@ export default function Navbar() {
                 onMouseEnter={() => letterSwapRef.current?.hoverStart()}
                 onMouseLeave={() => letterSwapRef.current?.hoverEnd()}
               >
-                <span className="relative z-10 tracking-wider uppercase text-base sm:text-lg font-light">
+                <span className="relative z-10 tracking-wider uppercase text-base sm:text-lg font-light flex items-center justify-center h-[1.2em]">
                   <RandomLetterSwapForward ref={letterSwapRef} label="Let's Talk" reverse={false} />
                 </span>
               </ShimmerButton>

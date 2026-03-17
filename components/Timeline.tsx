@@ -14,7 +14,7 @@ const timelineItems: TimelineItem[] = [
   { id: '1', title: 'WHAT WE DO', sectionId: 'services-section' },
   { id: '2', title: 'WORKS', sectionId: 'works-section' },
   { id: '3', title: 'SHOWCASE', sectionId: 'showcase-section' },
-  { id: '4', title: 'ABOUT', sectionId: 'about-section' },
+  { id: '4', title: 'HOW WE WORK', sectionId: 'how-we-work-section' },
 ];
 
 export default function Timeline() {

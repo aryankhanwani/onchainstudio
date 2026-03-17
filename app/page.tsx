@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import WorksSection from '@/components/WorksSection';
 import ShowcaseSection from '@/components/ShowcaseSection';
-import { AboutSection } from '@/components/about-section';
 import { BookCallSection } from '@/components/book-call-section';
+import HowWeWorkSection from '@/components/HowWeWorkSection';
 import Preloader from '@/components/Preloader';
 import Timeline from '@/components/Timeline';
 import { Footer } from '@/components/Footer';
@@ -61,10 +61,10 @@ export default function Home() {
                 <ServicesSection />
                 <WorksSection />
                 <ShowcaseSection />
-                <section id="about-section" className="relative bg-black">
-                  <AboutSection />
+                <section id="how-we-work-section">
+                  <HowWeWorkSection />
                 </section>
-                <section id="book-call-section" className="relative bg-black">
+                <section id="book-call-section" className="relative">
                   <BookCallSection />
                 </section>
                 <section className="relative bg-black">

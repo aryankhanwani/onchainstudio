@@ -101,7 +101,7 @@ export const RandomLetterSwapForward = forwardRef<RandomLetterSwapRef, TextProps
 
   return (
     <motion.span
-      className={`flex justify-center items-center relative overflow-hidden ${className}`}
+      className={`inline-flex justify-center items-center relative overflow-hidden leading-none ${className}`}
       onHoverStart={hoverStart}
       onHoverEnd={hoverEnd}
       onClick={onClick}
@@ -111,7 +111,7 @@ export const RandomLetterSwapForward = forwardRef<RandomLetterSwapRef, TextProps
       <span className="sr-only">{label}</span>
       {label.split('').map((letter: string, i: number) => {
         return (
-          <span className="whitespace-pre relative inline-flex items-center overflow-hidden" key={i} style={{ height: '1em' }}>
+          <span className="whitespace-pre relative inline-flex items-center justify-center overflow-hidden" key={i} style={{ height: '1.2em', lineHeight: '1.2em' }}>
             <motion.span
               className={`relative letter-${i}`}
               style={{ top: 0 }}

@@ -16,56 +16,52 @@ interface ShowcaseProject {
 const showcaseProjects: ShowcaseProject[] = [
   {
     id: 1,
-    title: 'Project One',
+    title: 'Motion Graphics',
     videoSrc: '/1080horizontal.m3u8',
-    thumbnailSrc: '/IMG_6276.PNG',
     description: 'A stunning showcase of creative excellence',
   },
   {
     id: 2,
-    title: 'Project Two',
+    title: 'All in One Ecosystem',
     videoSrc: '/yellow-allinone-ecosystem-v3-portrait.m3u8',
-    thumbnailSrc: '/IMG_6276.PNG',
     description: 'Innovative design meets cutting-edge technology',
   },
   {
     id: 3,
-    title: 'Project Three',
+    title: 'TOKEN 2049',
     videoSrc: '/IMG_0330-1.m3u8',
-    thumbnailSrc: '/IMG_6276.PNG',
     description: 'Pushing boundaries in digital storytelling',
   },
   {
     id: 4,
-    title: 'Project Four',
+    title: '1Inch x Yellow Media',
     videoSrc: '/1Inch-x-Yellow-Media.m3u8',
-    thumbnailSrc: '/IMG_6276.PNG',
     description: 'Where creativity and strategy converge',
   },
 ];
+
+const MOBILE_CARD_GAP = 16;
+const MOBILE_CARD_INSET = 80; // 5rem total horizontal inset (pl-4 pr-4 + visual padding)
 
 export default function ShowcaseSection() {
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileIndex, setMobileIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const baseX = useMotionValue(0);
-  const animationSpeed = 2.0; // Faster speed - pixels per frame
-  
-  // Duplicate items for seamless infinite loop
+  const animationSpeed = 2.0;
+
   const duplicatedProjects = [...showcaseProjects, ...showcaseProjects, ...showcaseProjects];
 
-  // Mobile detection
   useEffect(() => {
     const checkMobile = () => {
       const isMobileView = window.innerWidth < 768;
       setIsMobile(isMobileView);
-      
-      // On mobile, ensure carousel doesn't auto-scroll by resetting position if needed
       if (isMobileView) {
         setIsPaused(true);
-        // Reset to start position on mobile
         baseX.set(0);
+        setMobileIndex(0);
       } else {
         setIsPaused(false);
       }
@@ -74,88 +70,63 @@ export default function ShowcaseSection() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-  
-  // Calculate the width of one set of items
+
   const getItemWidth = () => {
     if (!carouselRef.current) return 0;
     return carouselRef.current.scrollWidth / 3;
   };
 
-  // Normalize X position to stay within one set width for seamless looping
   const normalizeX = (x: number) => {
     const itemWidth = getItemWidth();
     if (itemWidth === 0) return x;
-    
-    // Keep X negative (moving left) and within one set width
     let normalized = x;
-    while (normalized > 0) {
-      normalized -= itemWidth;
-    }
-    while (Math.abs(normalized) >= itemWidth) {
-      normalized += itemWidth;
-    }
+    while (normalized > 0) normalized -= itemWidth;
+    while (Math.abs(normalized) >= itemWidth) normalized += itemWidth;
     return normalized;
   };
 
-  // Animation frame for continuous scrolling (desktop only)
   useAnimationFrame((t, delta) => {
-    // Completely disable auto-scroll on mobile
     if (isMobile) return;
     if (isPaused || isDragging || !carouselRef.current) return;
-    
-    const moveBy = animationSpeed * (delta / 16); // Normalize to 60fps
+    const moveBy = animationSpeed * (delta / 16);
     const currentX = baseX.get();
     const itemWidth = getItemWidth();
-    
     if (itemWidth === 0) return;
-    
-    let newX = currentX - moveBy;
-    newX = normalizeX(newX);
-    
+    let newX = normalizeX(currentX - moveBy);
     baseX.set(newX);
   });
 
-  // Get single card width for mobile navigation
-  const getCardWidth = () => {
-    if (!carouselRef.current || !isMobile) return 0;
-    const container = carouselRef.current.parentElement;
-    if (!container) return 0;
-    // Calculate based on viewport width (90vw + gap)
-    return window.innerWidth * 0.9 + 24; // 90vw + gap-6 (24px)
+  const getMobileCardWidth = () => {
+    if (!isMobile) return 0;
+    return window.innerWidth - MOBILE_CARD_INSET;
   };
 
-  // Handle arrow navigation (mobile only)
+  const getMobileStep = () => {
+    return getMobileCardWidth() + MOBILE_CARD_GAP;
+  };
+
   const handlePrev = () => {
     if (!isMobile) return;
-    const cardWidth = getCardWidth();
+    const step = getMobileStep();
     const currentX = baseX.get();
     const itemWidth = getItemWidth();
-    
-    if (itemWidth === 0 || cardWidth === 0) return;
-    
-    let newX = currentX + cardWidth;
-    newX = normalizeX(newX);
-    
-    // Prevent going beyond start
-    if (newX > 0) {
-      newX = 0;
-    }
-    
+    if (itemWidth === 0 || step === 0) return;
+    let newX = Math.min(0, currentX + step);
     baseX.set(newX);
+    setMobileIndex((i) => (i <= 0 ? showcaseProjects.length - 1 : i - 1));
   };
 
   const handleNext = () => {
     if (!isMobile) return;
-    const cardWidth = getCardWidth();
+    const step = getMobileStep();
     const currentX = baseX.get();
     const itemWidth = getItemWidth();
-    
-    if (itemWidth === 0 || cardWidth === 0) return;
-    
-    let newX = currentX - cardWidth;
+    if (itemWidth === 0 || step === 0) return;
+    let newX = currentX - step;
     newX = normalizeX(newX);
-    
+    if (newX > 0) newX = 0;
     baseX.set(newX);
+    setMobileIndex((i) => (i >= showcaseProjects.length - 1 ? 0 : i + 1));
   };
 
   // Handle drag
@@ -198,13 +169,16 @@ export default function ShowcaseSection() {
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    // Normalize position after drag
     const currentX = baseX.get();
     baseX.set(normalizeX(currentX));
-    // Resume auto-scroll
-    setTimeout(() => {
-      setIsPaused(false);
-    }, 100);
+    if (isMobile) {
+      const step = getMobileStep();
+      if (step > 0) {
+        const idx = Math.round(-currentX / step) % showcaseProjects.length;
+        setMobileIndex((idx + showcaseProjects.length) % showcaseProjects.length);
+      }
+    }
+    setTimeout(() => setIsPaused(false), 100);
   };
 
   return (
@@ -239,42 +213,18 @@ export default function ShowcaseSection() {
 
           {/* Infinite Carousel */}
           <div className="relative w-full overflow-hidden mb-12 md:mb-16">
-            {/* Left gradient fade - hidden on mobile */}
+            {/* Desktop gradient fades */}
             <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black via-black/50 to-transparent z-20 pointer-events-none" />
-            
-            {/* Right gradient fade - hidden on mobile */}
             <div className="hidden md:block absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black via-black/50 to-transparent z-20 pointer-events-none" />
-            
-            {/* Mobile Arrow Buttons */}
-            {isMobile && (
-              <>
-                <button
-                  onClick={handlePrev}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-300"
-                  aria-label="Previous"
-                >
-                  <ChevronLeft className="w-6 h-6 text-white" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all duration-300"
-                  aria-label="Next"
-                >
-                  <ChevronRight className="w-6 h-6 text-white" />
-                </button>
-              </>
-            )}
-            
+
+            {/* Mobile: carousel with padded track so content doesn't sit under buttons */}
             <motion.div
               ref={carouselRef}
-              className={`flex gap-6 md:gap-8 scrollbar-hide select-none ${
-                isMobile ? '' : 'cursor-grab active:cursor-grabbing'
+              className={`flex scrollbar-hide select-none ${
+                isMobile ? 'gap-4 pl-4 pr-4' : 'cursor-grab active:cursor-grabbing gap-6 md:gap-8'
               }`}
-              style={{ 
-                width: 'max-content',
-                x: baseX,
-              }}
-              drag={isMobile ? false : "x"}
+              style={{ width: 'max-content', x: baseX }}
+              drag={isMobile ? false : 'x'}
               dragConstraints={{ left: -Infinity, right: 0 }}
               dragElastic={0.05}
               dragMomentum={false}
@@ -282,16 +232,8 @@ export default function ShowcaseSection() {
               onDragStart={handleDragStart}
               onDrag={handleDrag}
               onDragEnd={handleDragEnd}
-              onMouseEnter={() => {
-                if (!isMobile && !isDragging) {
-                  setIsPaused(true);
-                }
-              }}
-              onMouseLeave={() => {
-                if (!isMobile && !isDragging) {
-                  setIsPaused(false);
-                }
-              }}
+              onMouseEnter={() => !isMobile && !isDragging && setIsPaused(true)}
+              onMouseLeave={() => !isMobile && !isDragging && setIsPaused(false)}
             >
               {duplicatedProjects.map((project, index) => (
                 <motion.div
@@ -300,13 +242,12 @@ export default function ShowcaseSection() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="group flex-shrink-0 w-[90vw] sm:w-[70vw] md:w-[55vw] lg:w-[42vw] xl:w-[35vw]"
+                  className="group shrink-0 w-[calc(100vw-5rem)] sm:w-[70vw] md:w-[55vw] lg:w-[42vw] xl:w-[35vw]"
                 >
                   <div className="flex flex-col gap-3 md:gap-4">
                     <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-300">
                       <HoverVideoPlayer
                         videoSrc={project.videoSrc}
-                        thumbnailSrc={project.thumbnailSrc}
                         className="w-full h-full"
                         muted
                         loop
@@ -314,7 +255,7 @@ export default function ShowcaseSection() {
                       />
                     </div>
                     <div className="px-1">
-                      <h3 className="font-[var(--font-geist-sans)] text-xl md:text-2xl lg:text-3xl font-light text-white">
+                      <h3 className="font-[var(--font-geist-sans)] text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white">
                         {project.title}
                       </h3>
                     </div>
@@ -322,6 +263,41 @@ export default function ShowcaseSection() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Mobile: controls below carousel */}
+            {isMobile && (
+              <div className="flex items-center justify-center gap-6 mt-6">
+                <button
+                  onClick={handlePrev}
+                  type="button"
+                  className="shrink-0 min-h-[48px] min-w-[48px] rounded-full bg-white/10 hover:bg-white/20 active:bg-white/25 border border-white/20 flex items-center justify-center transition-all duration-200 touch-manipulation"
+                  aria-label="Previous project"
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {showcaseProjects.map((_, i) => (
+                    <span
+                      key={i}
+                      className={`block rounded-full transition-all duration-200 ${
+                        i === mobileIndex ? 'w-6 h-2 bg-white' : 'w-2 h-2 bg-white/30'
+                      }`}
+                      aria-hidden
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={handleNext}
+                  type="button"
+                  className="shrink-0 min-h-[48px] min-w-[48px] rounded-full bg-white/10 hover:bg-white/20 active:bg-white/25 border border-white/20 flex items-center justify-center transition-all duration-200 touch-manipulation"
+                  aria-label="Next project"
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
