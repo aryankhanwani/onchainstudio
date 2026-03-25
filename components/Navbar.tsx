@@ -52,10 +52,12 @@ export default function Navbar({ alwaysVisible = false }: NavbarProps) {
         opacity: isVisible ? 1 : 0 
       }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all rounded-full duration-500 ${
-        scrolled
-          ? 'bg-black/60 backdrop-blur-2xl'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        alwaysVisible
+          ? 'bg-black/50 backdrop-blur-2xl border-b border-white/[0.06]'
+          : scrolled
+            ? 'bg-black/60 backdrop-blur-2xl rounded-full'
+            : 'bg-transparent rounded-full'
       }`}
     >
       <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">

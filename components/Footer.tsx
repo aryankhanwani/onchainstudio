@@ -88,12 +88,12 @@ const Footer: React.FC = () => {
             </h3>
             <div className="flex flex-col gap-5 md:gap-6">
               <motion.a
-                href="mailto:hello@onchainstudio.com"
+                href="mailto:business@theonchainstudio.com"
                 className="text-white/70 hover:text-white text-base md:text-lg font-light font-[var(--font-geist-sans)] transition-colors duration-300 group relative inline-block w-fit"
                 whileHover={{ x: 4 }}
               >
                 <span className="relative">
-                  hello@onchainstudio.com
+                  business@theonchainstudio.com
                   <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
                 </span>
               </motion.a>
@@ -134,7 +134,7 @@ const Footer: React.FC = () => {
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-white text-black rounded-full font-medium text-sm md:text-base uppercase tracking-wider font-[var(--font-geist-sans)] hover:bg-white/95 transition-all duration-300 group"
             >
-              <span>Book a Meeting</span>
+              <span>Book a Strategy Call</span>
               <motion.svg
                 width="18"
                 height="18"
@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
               </svg>
             </motion.a>
             <motion.a
-              href="mailto:hello@onchainstudio.com"
+              href="mailto:business@theonchainstudio.com"
               className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all duration-300 group"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}

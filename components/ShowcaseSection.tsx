@@ -204,15 +204,6 @@ export default function ShowcaseSection() {
             >
               SHOWCASE
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="font-[var(--font-geist-sans)] text-base sm:text-lg md:text-xl text-white/80 font-light leading-relaxed max-w-2xl"
-            >
-              Explore our portfolio of exceptional projects that demonstrate our creative vision and technical expertise.
-            </motion.p>
           </div>
 
           {/* Infinite Carousel */}

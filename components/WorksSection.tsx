@@ -12,7 +12,7 @@ interface StatCard {
 const stats: StatCard[] = [
   { id: 1, value: '500+', label: 'Videos' },
   { id: 2, value: '12M+', label: 'Impressions' },
-  { id: 3, value: '99%', label: 'Satisfaction' },
+  { id: 3, value: '4–10x', label: 'ROAS' },
 ];
 
 export default function WorksSection() {

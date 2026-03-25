@@ -192,33 +192,6 @@ function ServiceBlock({ service, index }: { service: typeof services[0]; index: 
   );
 }
 
-/* ─── Quick-nav pills ─── */
-
-function QuickNav() {
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  return (
-    <motion.div
-      className="flex flex-wrap gap-3 justify-center"
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.4 }}
-    >
-      {services.map((s) => (
-        <button
-          key={s.id}
-          onClick={() => scrollTo(s.id)}
-          className="group relative px-5 py-2.5 rounded-full border border-white/[0.08] hover:border-white/20 transition-all duration-300 text-white/40 hover:text-white text-xs sm:text-sm font-light uppercase tracking-wider"
-        >
-          {s.title}
-          <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.08),transparent_70%)]" />
-        </button>
-      ))}
-    </motion.div>
-  );
-}
 
 /* ─── CTA ─── */
 
@@ -242,7 +215,7 @@ function ServicesCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 tracking-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight"
         >
           Looking for a Web3
           <br />
@@ -255,7 +228,7 @@ function ServicesCTA() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-sm sm:text-base md:text-lg text-white/35 font-light max-w-lg mb-8 sm:mb-10"
         >
-          Work with a team that has been building and scaling projects in Web3 for over 6 years.
+          Six years in Web3. We&apos;ve helped launch and scale some of the most ambitious projects in the space.
         </motion.p>
         <motion.a
           href="https://calendly.com/rohaan-web3-marketer/30min"
@@ -319,7 +292,29 @@ export default function ServicesPage() {
           >
             Strategy. Marketing. Production. Three pillars, one studio — built for Web3 founders who refuse to blend in.
           </motion.p>
-          <QuickNav />
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex justify-center"
+          >
+            <motion.a
+              href="/Yellow%20Case%20Study_paid_ads.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-white text-black rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,0.3)]"
+            >
+              View Case Study
+              <motion.svg width="14" height="14" viewBox="0 0 20 20" fill="none"
+                animate={{ x: [0, 3, 0], y: [0, -3, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <path d="M5 15L15 5M15 5H5M15 5V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </motion.svg>
+            </motion.a>
+          </motion.div>
         </div>
       </section>
 

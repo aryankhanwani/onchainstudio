@@ -20,6 +20,7 @@ const timelineItems: TimelineItem[] = [
 export default function Timeline() {
   const [activeSection, setActiveSection] = useState<string>('services-section');
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [sidebarHovered, setSidebarHovered] = useState<boolean>(false);
   const lenis = useLenis();
 
   useEffect(() => {
@@ -148,14 +149,21 @@ export default function Timeline() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.3 }}
-      className={`fixed left-8 top-3/5 -translate-y-1/2 z-50 hidden lg:block ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+    <div
+      className={`fixed left-0 top-[60%] -translate-y-1/2 z-50 hidden lg:block ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      onMouseEnter={() => setSidebarHovered(true)}
+      onMouseLeave={() => setSidebarHovered(false)}
     >
+      <motion.div
+        initial={{ opacity: 0, x: 'calc(-100% + 10px)' }}
+        animate={{
+          opacity: isVisible ? 1 : 0,
+          x: isVisible && sidebarHovered ? '24px' : 'calc(-100% + 10px)',
+        }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      >
       {/* Background with blur */}
-      <div className="absolute inset-0 -left-4 -right-4 -top-4 -bottom-4 bg-black/20 backdrop-blur-md rounded-2xl border border-white/10" />
+      <div className="absolute inset-0 -left-4 -right-4 -top-4 -bottom-4 bg-black/30 backdrop-blur-md rounded-2xl border border-white/10" />
       
       <div className="relative flex flex-col items-start gap-12 px-6 py-8">
         {/* Timeline Line - connects all dots */}
@@ -213,7 +221,8 @@ export default function Timeline() {
           );
         })}
       </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 

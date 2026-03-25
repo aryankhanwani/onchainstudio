@@ -119,7 +119,7 @@ const BookCallSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             className="text-base sm:text-lg md:text-xl text-white/45 font-light mb-10 sm:mb-12 font-sans max-w-2xl mx-auto"
           >
-            Work with a team that has been building and scaling projects in Web3 for over 6 years.
+            Six years in Web3. We&apos;ve helped launch and scale some of the most ambitious projects in the space.
           </motion.p>
 
           <motion.a

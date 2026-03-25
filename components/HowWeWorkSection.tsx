@@ -31,7 +31,7 @@ const steps = [
     number: '04',
     title: 'Optimize',
     subtitle: '& scale',
-    description: 'We continuously analyze data, refine creative, and double down on what works — turning traction into compounding growth.',
+    description: 'We continuously analyze, cut what\'s dead, and push what\'s working until growth becomes self-sustaining.',
     accent: '#3B82F6',
     accentDim: 'rgba(59, 130, 246, 0.12)',
   },

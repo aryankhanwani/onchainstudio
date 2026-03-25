@@ -25,8 +25,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "OnChain Studio - Creative Video Production",
-  description: "Bringing creativity onchain. We create cinematic founder stories, podcast productions, event glimpses, explainers, and social-first content that drives engagement.",
+  title: "OnChain Studio | Web3 Marketing Partner",
+  description: "Your embedded Web3 marketing team. We help projects launch, grow, and dominate their niche — through strategy, performance marketing, and world-class content production.",
   icons: {
     icon: '/IMG_6276.PNG',
     shortcut: '/IMG_6276.PNG',
